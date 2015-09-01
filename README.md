@@ -15,7 +15,7 @@ This package is just a powershell script, so you need to run the package/push co
 - Install (this) NuGet package
 - Create `nuspec` file(s)
 - Execute powershell command.
-- :moneybags: :moneybags: :moneybags:
+- :moneybag: :moneybag: :moneybag:
 
 ![install-package PureKrome.PushIt](http://i.imgur.com/cmt4uxJ.png)
 - `install-package PureKrome.PushIt`
@@ -32,20 +32,20 @@ NOTE:
 - _P/P_ means package/publish...
 - _file.ps_ is the name of the script that was downloaded. The default name is `NuGet Package and Package.ps1` but that's pretty long/verbose for this help/FAQ so we'll shorten it, here :)
 
-Scenario: I'm creating a NuGet package so I need to do heaps of testing before I publish it up to the interwebs.  
-Answer: P/P locally to some folder and then use Visual Studio to use that folder as a NuGet repository!
+**Scenario**: I'm creating a NuGet package so I need to do heaps of testing before I publish it up to the interwebs.  
+**Answer**: P/P locally to some folder and then use Visual Studio to use that folder as a NuGet repository!
 - `& '.\file.ps1' -nuget c:\temp\nuget.exe -destination c:\temp\nugets -version 0.1-alpha`
 
-Scenario: I'm still doing some localhost development (so the packages shouldn't go up to the interwebs) but my nuspecs are now in a _different_ folder (no .. don't ask why... just accept this)  
-Answer: Same answer as above but define the source directory
+**Scenario**: I'm still doing some localhost development (so the packages shouldn't go up to the interwebs) but my nuspecs are now in a _different_ folder (no .. don't ask why... just accept this)  
+**Answer**: Same answer as above but define the source directory
 - `& '.\file.ps1' -nuget c:\temp\nuget.exe -destination c:\temp\nugets -source ..\anotherFolder\turtles\all\the\way\down -version 0.1-alpha`
 
-Scenario: Ok, so far so good. I'm ready to test stuff. But ... I want to push it up to MyGet (not the official NuGet and yes, I know that there's the `-pre` option but I'm not using that, yet).  
-Answer: Sure can. You'll need to get your MyGet feed Url -and- ApiKey. Once you have that ...
+**Scenario**: Ok, so far so good. I'm ready to test stuff. But ... I want to push it up to MyGet (not the official NuGet and yes, I know that there's the `-pre` option but I'm not using that, yet).  
+**Answer**: Sure can. You'll need to get your MyGet feed Url -and- ApiKey. Once you have that ...
 - `& '.\file.ps1' -nuget c:\temp\nuget.exe -destination c:\temp\nugets -feedSource https://www.myget.org/F/<BlahBlahBlah>/api/v2 -apiKey ABCD-EFG...`
 
-Scenario: Push It!! Time to go live, peeps! Show me the money! (read: Lets publish this to the official servers @ NuGet.org)  
-Answer: Time for the money-shot.
+**Scenario**: Push It!! Time to go live, peeps! Show me the money! (read: Lets publish this to the official servers @ NuGet.org)  
+**Answer**: Time for the money-shot.
 - `& '.\file.ps1' -nuget c:\temp\nuget.exe -destination c:\temp\nugets -apiKey ABCD-EFG...`
 
 
