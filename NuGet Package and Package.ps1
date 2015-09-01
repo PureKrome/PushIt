@@ -34,7 +34,7 @@ function DisplayHelp()
     "eg. & '.\NuGet Package and Package.ps1' -version 0.1-alpha -source ../nugetspecs/ -destination C:\temp\TempNuGetPackages"
     "eg. & '.\NuGet Package and Package.ps1' -version 0.1-alpha -nuget c:\temp\nuget.exe"
     "eg. & '.\NuGet Package and Package.ps1' -version 0.1-alpha -nuget c:\temp\nuget.exe -apiKey ABCD-EFG..."
-    "eg. & '.\NuGet Package and Package.ps1' -version 0.1-alpha -nuget c:\temp\nuget.exe -feedSource = https://www.myget.org/F/pushit/api/v2 -apiKey ABCD-EFG..."
+    "eg. & '.\NuGet Package and Package.ps1' -version 0.1-alpha -nuget c:\temp\nuget.exe -feedSource https://www.myget.org/F/pushit/api/v2 -apiKey ABCD-EFG..."
     ""
 }
 
@@ -42,13 +42,14 @@ function DisplayHelp()
 function DisplayCommandLineArgs()
 {
     "Options provided:"
-    "    => version: $version"
-    "    => source: $source"
+    "    =>     version: $version"
+    "    =>      source: $source"
     "    => destination: $destination"
-    "    => nuget: $nuget"
-    "    => feedSource: $feedSource"
-    "    => api key: $apiKey"
-    "    => clean: $clean"
+    "    =>       nuget: $nuget"
+    "    =>  feedSource: $feedSource"
+    "    =>     api key: $apiKey"
+    "    =>       clean: $clean"
+    ""
 
     if (-Not $version)
     {
@@ -97,8 +98,6 @@ function DisplayCommandLineArgs()
         # Assumption, nuget.exe is the current folder where this file is.
         $global:nugetExe = Join-Path $source "nuget" 
     }
-
-    $global:nugetExe
 
     if (!(Test-Path $global:nugetExe -PathType leaf))
     {
