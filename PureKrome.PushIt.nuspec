@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>PureKrome.PushIt</id>
+        <version>$version$</version>
+        <title>Push It</title>
+        <authors>Justin Adler</authors>
+        <owners>Justin Adler</owners>
+        <licenseUrl>https://raw.githubusercontent.com/PureKrome/PushIt/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/PureKrome/PushIt</projectUrl>
+        <iconUrl>http://i.imgur.com/bR4Yf.jpg</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A powershell script to help developers package and publish NuGet specifications. It looks for any/all nuspec files in a directory and packages them then publishes them to the designated feed. Can be used to copy them toa local directory for localhost-testing (before any pushes up to a live feed).</description>
+        <summary>A powershell script to help developers package and publish NuGet specifications.</summary>
+        <copyright>2015</copyright>
+        <language>en-AU</language>
+        <tags>powershell nuget nuspec nupkg worlddomination worldomination unicorn magicalunicorn magical-unicorn</tags>
+    </metadata>
+    <files>
+        <file src="NuGet Package and Package.ps1" target="content\NuGet\NuGet Package and Package.ps1" />
+    </files>
+</package>
