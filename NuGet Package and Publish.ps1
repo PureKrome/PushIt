@@ -7,14 +7,14 @@
 
 
 param (
-  [string]$version = "",
-  [string]$apiKey = "",
+  [string]$version,
+  [string]$apiKey,
   [string]$source = $PSScriptRoot,
   [string]$destination = $PSScriptRoot,
   [string]$feedSource = "https://nuget.org",
-  [string]$nuget = "",
-  [switch]$clean = $false,
-  [switch]$help = $false
+  [string]$nuget,
+  [switch]$clean,
+  [switch]$help
 )
 
 function DisplayHelp()
@@ -38,16 +38,41 @@ function DisplayHelp()
     ""
 }
 
+function CleanUpInputArgs()
+{
+    $apiKey = $apiKey.Trim()
+    $feedSource = $feedSource.Trim()
+}
 
 function DisplayCommandLineArgs()
 {
+    
+    if ($apiKey)
+    {
+        if ($apiKey.length -gt 6)
+        {
+            $truncatedApiKey = "......" + $apiKey.substring($apiKey.length - 6)
+        }
+        else
+        {
+            for($i = 0; $i -lt $apiKey.length; $i++)
+            {
+                $truncatedApiKey += "*"
+            }
+        }
+    }
+    else
+    {
+        $truncatedApiKey = "<none provided>"
+    }
+     
     "Options provided:"
     "    =>     version: $version"
     "    =>      source: $source"
     "    => destination: $destination"
     "    =>       nuget: $nuget"
     "    =>  feedSource: $feedSource"
-    "    =>     api key: $apiKey"
+    "    =>     api key: $truncatedApiKey"
     "    =>       clean: $clean"
     ""
 
@@ -154,7 +179,7 @@ function PackageTheSpecifications()
 
     foreach($file in $files)
     {
-        &$nugetExe pack $file -Version $version -OutputDirectory $destination
+        &$nugetExe pack ($file.FullName) -Version $version -OutputDirectory $destination
 
         ""
     }
@@ -199,13 +224,12 @@ function PushThePackagesToNuGet()
 $ErrorActionPreference = "Stop"
 $global:nugetExe = ""
 
-cls
 
 ""
 " ---------------------- start script ----------------------"
 ""
 ""
-"  Starting NuGet packing/publishing script -  (╯°□°）╯︵ ┻━┻"
+"  Starting NuGet packing/publishing script"
 ""
 "  This script will look for -all- *.nuspec files in a source directory,"
 "  then paackage them up to *.nupack files. Finally, it can publish"
@@ -222,6 +246,8 @@ if ($help)
 }
 else
 {
+    CleanUpInputArgs
+
     DisplayCommandLineArgs
 
     CleanUp
